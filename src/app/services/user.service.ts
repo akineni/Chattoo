@@ -13,7 +13,7 @@ export class UserService {
 
   constructor() { }
 
-  select(event: Event) {
+  select(event: Event): void {
     $('.chat-list li').removeClass('active')
     $(event.currentTarget).addClass('active')
 

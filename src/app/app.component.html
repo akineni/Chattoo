@@ -44,13 +44,18 @@
                     <ul class="m-b-0">
                     </ul>
                 </div>
-                <div class="chat-message clearfix" *ngIf="this.userService.currentUser">
-                    <div class="input-group mb-0">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-send"></i></span>
+                <div class="chat-message clearfix row justify-content-center" *ngIf="this.userService.currentUser">
+                        <div class="col-12 col-sm-10 col-md-12 col-lg-10 pr-sm-0 pr-lg-0 pr-md-3">
+                            <div class="input-group mb-0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-send"></i></span>
+                                </div>
+                                <textarea class="form-control" placeholder="Enter text here..." rows="1"></textarea>                              
+                            </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="Enter text here...">                                    
-                    </div>
+                        <div class="col-12 col-sm-2 col-md-12 col-lg-2 pl-sm-1 pl-lg-1 pl-md-3 pt-1 pt-sm-0 pt-md-1 pt-lg-0">
+                            <button type="button" class="btn-success btn btn-sm btn-block send-btn" (click)="sendMessage()">Send <i class="fa fa-send"></i></button>
+                        </div>
                 </div>
             </div>
         </div>

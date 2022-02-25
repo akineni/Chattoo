@@ -4,6 +4,7 @@ import { User } from '../types/User';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,13 @@ export class SocketService {
 
   constructor(
     private http: HttpClient,
-    private userService: UserService
+    private userService: UserService/*,
+    private messageService: MessageService*/
   ) { 
     
     this.socket.on('connect', () => {
-      console.log(this.socket.id)
-      this.http.get<Array<User>>(`${environment.backend}/clients`).subscribe(data => {
-        (this.userService.users = data).splice(data.findIndex(v => v.sId == this.socket.id, 1))
+      this.http.get<Array<User>>(`${environment.backend}/clients/${this.socket.id}`).subscribe(data => {
+        this.userService.users = this.userService.users.concat(data)
       })
     })
 
@@ -31,6 +32,13 @@ export class SocketService {
 
     this.socket.on('online', sId => {
       this.userService.users.push(<User>(sId))
+    })
+
+    this.socket.on('receive', () => {
+      //this.messageService.receive()
+      this.http.get(`${environment.backend}/message`).subscribe(data => {
+        console.log(data)
+      })
     })
   }
 }
