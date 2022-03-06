@@ -5,6 +5,7 @@ export class User implements Client {
 
     sId: string
     status?: Status | undefined = Status.Online
+    newIncomingMessageCount: number = 0
 
     constructor(sId: string) {
         this.sId = sId

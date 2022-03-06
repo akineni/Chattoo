@@ -1,8 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { MessageService } from './services/message.service';
-import { SocketService } from './services/socket.service';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -13,16 +11,12 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   env = environment //For use in view (.html)
-  search: any = ''
+  search: string = ''
   
   constructor(
     public userService: UserService,
-    private socketService: SocketService,
-    private messageService: MessageService,
-    private titleService: Title
-  ) {
-    titleService.setTitle(environment.appName)
-   }
+    private messageService: MessageService
+  ) {}
 
   selectUser(event: Event) {
     this.userService.select(event)

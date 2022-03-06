@@ -18,5 +18,12 @@ export class UserService {
     $(event.currentTarget).addClass('active')
 
     this.currentUser = this.users[$(event.currentTarget).index()]
+    this.currentUser.newIncomingMessageCount = 0
+
+    $('.chat-history ul').empty()
+  }
+
+  getUser(sId: string): User {
+    return this.users.filter(v => v.sId == sId)[0]
   }
 }
