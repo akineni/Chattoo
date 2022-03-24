@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../types/User';
+import { User } from '../_types/User';
 
 declare var $:any;
 

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { io } from 'socket.io-client'
-import { User } from '../types/User';
+import { User } from '../_types/User';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
-import { Title } from '@angular/platform-browser';
 
 declare var $:any
 
@@ -13,29 +12,31 @@ declare var $:any
 })
 export class SocketService {
 
-  socket = io(environment.backend)
+  socket = io(environment.backend, {
+    query: { username: sessionStorage.getItem('username') },
+    autoConnect: false
+  })
 
   constructor(
     private http: HttpClient,
-    private userService: UserService,
-    private titleService: Title/*
+    private userService: UserService/*
     private messageService: MessageService*/    
   ) { 
     
     this.socket.on('connect', () => {
-      titleService.setTitle(this.socket.id + ': ' + environment.appName)
-      this.http.get<string[]>(`${environment.backend}/clients/${this.socket.id}`).subscribe(data => {
-        this.userService.users = [...this.userService.users, ...data.map(v => new User(v))]
+      this.http.get<any[]>(`${environment.backend}/clients/${this.socket.id}`).subscribe(data => {
+        this.userService.users = [...this.userService.users, ...data.map(v => new User(v.username, v.sId))]
       })
     })
 
     this.socket.on('offline', sId => {
       this.userService.users.splice(this.userService.users.indexOf(this.userService.getUser(sId)), 1)
-      if(this.userService.currentUser.sId == sId) this.userService.currentUser = undefined
+      if(this.userService.currentUser && this.userService.currentUser.sId == sId)
+        this.userService.currentUser = undefined
     })
 
-    this.socket.on('online', sId => {
-      this.userService.users.push(new User(sId))
+    this.socket.on('online', user => {
+      this.userService.users.push(new User(user.username, user.sId))
     })
 
     this.socket.on('receive', (sId, msg) => {
