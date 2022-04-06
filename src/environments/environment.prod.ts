@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  appName: 'Chattoo',
+  backend: 'http://localhost:3000'
 };

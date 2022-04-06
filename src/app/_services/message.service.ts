@@ -13,7 +13,11 @@ export class MessageService {
   constructor(
     private userService: UserService,
     private socketService: SocketService
-  ) { }
+  ) {
+    this.socketService.socket.on('receive', (sId, msg) => {
+      this.receive(sId, msg)
+    })
+  }
 
   send(): void {
 
@@ -44,5 +48,22 @@ export class MessageService {
 
   }
 
-  receive(): void {}
+  receive(sId: any, msg: any): void {
+    if(this.userService.currentUser != undefined && this.userService.currentUser.sId == sId){
+      $('.chat-history ul.m-b-0').append(`
+      <li class="clearfix">
+        <div class="message-data">
+            <img src="${ this.userService.currentUser.avatar }" alt="avatar">
+            <span class="message-data-time">${ new Intl.DateTimeFormat('default', {
+              hour12: true,
+              hour: 'numeric',
+              minute: 'numeric'
+            }).format(new Date(msg.time)) }</span>
+        </div>
+        <div class="message other-message">${msg.body}</div>
+      </li>`)
+      $('.chat-history').scrollTop($('.chat-history').prop('scrollHeight'))
+    }else
+      this.userService.getUser(sId).newIncomingMessageCount++
+  }
 }

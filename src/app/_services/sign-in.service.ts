@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class SignInService {
 
+  signInStatus: boolean = false
+
   constructor(
     private http: HttpClient,
     private router: Router
@@ -19,7 +21,10 @@ export class SignInService {
     this.http.post(`${environment.backend}/sign-in`, { username, password }).subscribe(data => {
       if(data){
         sessionStorage.setItem('username', username)
+        sessionStorage.setItem('avatar', (<any>data).avatar)
         this.router.navigateByUrl('/chat')
+      }else {
+        this.signInStatus = true
       }
     })
   }

@@ -18,8 +18,8 @@ export class ChatComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    private messageService: MessageService,
     private socketService: SocketService,
+    private messageService: MessageService,
     private titleService: Title
   ) {}
 

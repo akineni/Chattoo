@@ -13,7 +13,7 @@
                     <ul class="list-unstyled chat-list mt-2 mb-0">
                         <li *ngFor="let user of this.userService.users | filterBy: search"
                         (click)="selectUser($event)">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                            <img [src]="user.avatar" alt="avatar">
                             <div class="about">
                                 <div class="name">{{ user.username | titlecase }}
                                     <span class="new-incoming-message-count badge badge-pill badge-info"
@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-lg-6" *ngIf="this.userService.currentUser; else elseBlock">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                    <img [src]="this.userService.currentUser.avatar" alt="avatar">
                                 </a>
                                 <div class="chat-about">
                                     <h6 class="m-b-0">{{ this.userService.currentUser.username | titlecase }}</h6>

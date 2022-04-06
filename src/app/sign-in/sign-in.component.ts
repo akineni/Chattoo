@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { SignInService } from '../_services/sign-in.service';
+import { get } from 'scriptjs'
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,13 @@ export class SignInComponent {
 
   constructor(
     private titleService: Title,
-    private signInService: SignInService
+    public signInService: SignInService
     ) { 
     titleService.setTitle(environment.appName + ': Login')
+  }
+
+  ngOnInit() {
+    get('../../assets/js/main.js', () => { })
   }
 
   signIn(): void {

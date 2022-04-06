@@ -7,10 +7,12 @@ export class User implements Client {
     status?: Status | undefined = Status.Online
     newIncomingMessageCount: number = 0
     username: string
+    avatar: string
 
-    constructor(username: string, sId: string) {
+    constructor(username: string, sId: string, avatar: string) {
         this.username = username
         this.sId = sId
+        this.avatar = avatar
     }
 
     toString(): string {
