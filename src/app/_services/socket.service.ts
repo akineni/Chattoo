@@ -13,7 +13,11 @@ declare var $:any
 export class SocketService {
 
   socket = io(environment.backend, {
-    query: { username: sessionStorage.getItem('username'), avatar: sessionStorage.getItem('avatar') },
+    query: {
+      username: sessionStorage.getItem('username'),
+      _id: sessionStorage.getItem('_id'),
+      avatar: sessionStorage.getItem('avatar')
+    },
     autoConnect: false
   })
 

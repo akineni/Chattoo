@@ -21,6 +21,7 @@ export class SignInService {
     this.http.post(`${environment.backend}/sign-in`, { username, password }).subscribe(data => {
       if(data){
         sessionStorage.setItem('username', username)
+        sessionStorage.setItem('_id', (<any>data)._id)
         sessionStorage.setItem('avatar', (<any>data).avatar)
         this.router.navigateByUrl('/chat')
       }else {

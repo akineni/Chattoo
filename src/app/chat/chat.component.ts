@@ -31,7 +31,10 @@ export class ChatComponent implements OnInit {
 
   ngOnDestroy(): void { this.socketService.socket.disconnect() }
 
-  selectUser(event: Event) { this.userService.select(event) }
+  selectUser(event: Event) {
+    this.userService.select(event)
+    this.socketService.socket.emit('load', this.userService.currentUser.sId)
+  }
 
   sendMessage() { this.messageService.send() }
 
