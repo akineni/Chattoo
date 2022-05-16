@@ -19,7 +19,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@types/scriptjs": "0.0.2",
-    "date-and-time": "^2.1.2",
+    "moment": "^2.29.3",
     "rxjs": "~6.6.0",
     "scriptjs": "^2.5.9",
     "socket.io-client": "^4.4.1",

@@ -12,6 +12,11 @@ declare var $:any
 })
 export class SocketService {
 
+  /*
+    * Setup connection and submit this user's details to the server for access
+    * by other users from the server
+  */
+
   socket = io(environment.backend, {
     query: {
       username: sessionStorage.getItem('username'),

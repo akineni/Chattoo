@@ -4,10 +4,11 @@ import { Status } from "./Status";
 export class User implements Client {
 
     /*
-        SOCKET ID: Every user has is a socket and has a unique ID 
-        for communication between client and server. It varies on
-        every page reload.
+        * SOCKET ID: Every user is a socket and has a unique ID 
+        * for communication between client and server. It varies on
+        * every page reload.
     */
+   
     sId: string
     status?: Status | undefined = Status.Online
     newIncomingMessageCount: number = 0

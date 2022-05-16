@@ -21,12 +21,8 @@ export class SignInComponent {
     titleService.setTitle(environment.appName + ': Login')
   }
 
-  ngOnInit() {
-    get('../../assets/js/main.js', () => { })
-  }
+  ngOnInit() { get('../../assets/js/main.js', () => { }) }
 
-  signIn(): void {
-    this.signInService.signIn(this.username, this.password)
-  }
+  signIn(): void { this.signInService.signIn(this.username, this.password) }
 
 }
