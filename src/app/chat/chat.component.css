@@ -98,6 +98,10 @@
     max-height: 350px;
     overflow-y: auto;
     border-bottom: 2px solid #fff;
+    background-image: url(/assets/images/logo-fade.png);
+    background-repeat: no-repeat;
+    background-size: 150px 150px;
+    background-position: center;
 }
 
 .chat .chat-history ul { padding: 0 }
