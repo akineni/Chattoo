@@ -19,6 +19,7 @@ export class SignInComponent {
     public signInService: SignInService
     ) { 
     titleService.setTitle(environment.appName + ': Login')
+    console.log(navigator.userAgent)
   }
 
   ngOnInit() { get('../../assets/js/main.js', () => { }) }
